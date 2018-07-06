@@ -1735,6 +1735,10 @@ var testSeries = []struct {
 		expectedMetric: labels.FromStrings(labels.MetricName, "my_metric", "a", "b"),
 		expectedValues: newSeq(1, 3, none, 5, none, none, none, none),
 	}, {
+		input:          `my_metric{a="b"} 1 -1`,
+		expectedMetric: labels.FromStrings(labels.MetricName, "my_metric", "a", "b"),
+		expectedValues: newSeq(1, -1),
+	}, {
 		input: `my_metric{a="b"} 1 3 _ 5 _a4`,
 		fail:  true,
 	},
